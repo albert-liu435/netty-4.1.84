@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * 是一个单例模式轮训的方式选择EventExecutor，
  * Default implementation which uses simple round-robin to choose next {@link EventExecutor}.
  */
 @UnstableApi
@@ -28,10 +29,23 @@ public final class DefaultEventExecutorChooserFactory implements EventExecutorCh
 
     public static final DefaultEventExecutorChooserFactory INSTANCE = new DefaultEventExecutorChooserFactory();
 
-    private DefaultEventExecutorChooserFactory() { }
+    private DefaultEventExecutorChooserFactory() {
+    }
 
+    /**
+     * 2.1：与运算
+     * 与运算符号：&
+     * <p>
+     * 与运算特点：1&1=1、1&0=0、0&1=0、0&0=0
+     * <p>
+     * 现在我们来举一个例子：
+     *
+     * @param executors
+     * @return
+     */
     @Override
     public EventExecutorChooser newChooser(EventExecutor[] executors) {
+        //判断是否为2的指数
         if (isPowerOfTwo(executors.length)) {
             return new PowerOfTwoEventExecutorChooser(executors);
         } else {

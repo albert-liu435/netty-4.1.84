@@ -22,9 +22,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.LockSupport;
 
 /**
+ * 线程执行的时候拒绝策略
  * Expose helper methods which create different {@link RejectedExecutionHandler}s.
  */
 public final class RejectedExecutionHandlers {
+    /**
+     * 直接抛出异常
+     */
     private static final RejectedExecutionHandler REJECT = new RejectedExecutionHandler() {
         @Override
         public void rejected(Runnable task, SingleThreadEventExecutor executor) {
@@ -32,7 +36,8 @@ public final class RejectedExecutionHandlers {
         }
     };
 
-    private RejectedExecutionHandlers() { }
+    private RejectedExecutionHandlers() {
+    }
 
     /**
      * Returns a {@link RejectedExecutionHandler} that will always just throw a {@link RejectedExecutionException}.

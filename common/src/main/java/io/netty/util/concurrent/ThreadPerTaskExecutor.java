@@ -20,6 +20,10 @@ import io.netty.util.internal.ObjectUtil;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadFactory;
 
+/**
+ * 每个任务的线程执行器
+ * 使用变量记录创建好的线程工厂，通过调用 execute 方法来调用线程工厂，创建新线程，并执行任务。
+ */
 public final class ThreadPerTaskExecutor implements Executor {
     private final ThreadFactory threadFactory;
 

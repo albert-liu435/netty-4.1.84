@@ -21,6 +21,7 @@ import static io.netty.util.internal.MathUtil.findNextPositivePowerOfTwo;
 import static io.netty.util.internal.ObjectUtil.checkNonEmptyAfterTrim;
 
 /**
+ * Http请求方法类
  * The request method of HTTP or its derived protocols, such as
  * <a href="https://en.wikipedia.org/wiki/Real_Time_Streaming_Protocol">RTSP</a> and
  * <a href="https://en.wikipedia.org/wiki/Internet_Content_Adaptation_Protocol">ICAP</a>.
@@ -122,7 +123,7 @@ public class HttpMethod implements Comparable<HttpMethod> {
     public HttpMethod(String name) {
         name = checkNonEmptyAfterTrim(name, "name");
 
-        for (int i = 0; i < name.length(); i ++) {
+        for (int i = 0; i < name.length(); i++) {
             char c = name.charAt(i);
             if (Character.isISOControl(c) || Character.isWhitespace(c)) {
                 throw new IllegalArgumentException("invalid character in name");

@@ -20,6 +20,7 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
 /**
+ * 用于处理客户端发送过来的消息，建单的解析并打印
  * Handler implementation for the echo server.
  */
 @Sharable

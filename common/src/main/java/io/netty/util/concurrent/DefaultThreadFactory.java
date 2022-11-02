@@ -24,6 +24,8 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * ThreadFactory工厂的实现类,DefaultThreadFactory 创建线程工厂，用于创建新线程
+ * 默认的线程池工厂类
  * A {@link ThreadFactory} implementation with a simple naming rule.
  */
 public class DefaultThreadFactory implements ThreadFactory {
@@ -64,9 +66,15 @@ public class DefaultThreadFactory implements ThreadFactory {
         this(toPoolName(poolType), daemon, priority);
     }
 
+    /**
+     * 对类名进行处理，将首字母转为小写，比如 NioEventLoop -> nioEventLoop，用于定义线程名。
+     *
+     * @param poolType
+     * @return
+     */
     public static String toPoolName(Class<?> poolType) {
         ObjectUtil.checkNotNull(poolType, "poolType");
-
+        // 获取类名，比如 NioEventLoop
         String poolName = StringUtil.simpleClassName(poolType);
         switch (poolName.length()) {
             case 0:
@@ -82,6 +90,14 @@ public class DefaultThreadFactory implements ThreadFactory {
         }
     }
 
+    /**
+     * 创建线程工厂 ThreadFactory，定义线程名称规则，并配置线程参数，包括是否为守护线程、线程的优先级等
+     *
+     * @param poolName
+     * @param daemon
+     * @param priority
+     * @param threadGroup
+     */
     public DefaultThreadFactory(String poolName, boolean daemon, int priority, ThreadGroup threadGroup) {
         ObjectUtil.checkNotNull(poolName, "poolName");
 
@@ -89,7 +105,7 @@ public class DefaultThreadFactory implements ThreadFactory {
             throw new IllegalArgumentException(
                     "priority: " + priority + " (expected: Thread.MIN_PRIORITY <= priority <= Thread.MAX_PRIORITY)");
         }
-
+        // 线程名称的前缀，比如 xxx-0-，poolId.incrementAndGet() 表示每创建一个 EventLoopGroup 则自增
         prefix = poolName + '-' + poolId.incrementAndGet() + '-';
         this.daemon = daemon;
         this.priority = priority;
@@ -100,14 +116,25 @@ public class DefaultThreadFactory implements ThreadFactory {
         this(poolName, daemon, priority, null);
     }
 
+    /**
+     * 为每个任务创建一个线程
+     * 　　使用线程工厂创建新线程，线程名为类名-线程组自增 ID-线程自增 ID，配置新线程的参数，
+     * 最后会调用底层调用 JDK 的 thread，将其封装为 FastThreadLocalThread。
+     *
+     * @param r
+     * @return
+     */
     @Override
     public Thread newThread(Runnable r) {
+        // 创建新线程，prefix 为 xxx-1-，加上线程自增 ID nextId.incrementAndGet()，
+        // 格式为类名-线程组自增 ID-线程自增 ID，比如 nioEventLoop-1-1
         Thread t = newThread(FastThreadLocalRunnable.wrap(r), prefix + nextId.incrementAndGet());
         try {
+            // 配置是否为守护线程
             if (t.isDaemon() != daemon) {
                 t.setDaemon(daemon);
             }
-
+            // 配置线程的优先级
             if (t.getPriority() != priority) {
                 t.setPriority(priority);
             }
@@ -118,6 +145,7 @@ public class DefaultThreadFactory implements ThreadFactory {
     }
 
     protected Thread newThread(Runnable r, String name) {
+        // 底层调用 JDK 的 thread
         return new FastThreadLocalThread(threadGroup, r, name);
     }
 }

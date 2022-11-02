@@ -28,6 +28,7 @@ import static io.netty.handler.codec.http.HttpObjectDecoder.DEFAULT_MAX_HEADER_S
 import static io.netty.handler.codec.http.HttpObjectDecoder.DEFAULT_MAX_INITIAL_LINE_LENGTH;
 
 /**
+ * http编解码器
  * A combination of {@link HttpRequestDecoder} and {@link HttpResponseEncoder}
  * which enables easier server side HTTP implementation.
  *
@@ -36,7 +37,9 @@ import static io.netty.handler.codec.http.HttpObjectDecoder.DEFAULT_MAX_INITIAL_
 public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequestDecoder, HttpResponseEncoder>
         implements HttpServerUpgradeHandler.SourceCodec {
 
-    /** A queue that is used for correlating a request and a response. */
+    /**
+     * A queue that is used for correlating a request and a response.
+     */
     private final Queue<HttpMethod> queue = new ArrayDeque<HttpMethod>();
 
     /**
@@ -70,9 +73,9 @@ public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequ
     public HttpServerCodec(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize, boolean validateHeaders,
                            int initialBufferSize) {
         init(
-          new HttpServerRequestDecoder(maxInitialLineLength, maxHeaderSize, maxChunkSize,
-                  validateHeaders, initialBufferSize),
-          new HttpServerResponseEncoder());
+                new HttpServerRequestDecoder(maxInitialLineLength, maxHeaderSize, maxChunkSize,
+                        validateHeaders, initialBufferSize),
+                new HttpServerResponseEncoder());
     }
 
     /**
@@ -81,8 +84,8 @@ public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequ
     public HttpServerCodec(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize, boolean validateHeaders,
                            int initialBufferSize, boolean allowDuplicateContentLengths) {
         init(new HttpServerRequestDecoder(maxInitialLineLength, maxHeaderSize, maxChunkSize, validateHeaders,
-                                          initialBufferSize, allowDuplicateContentLengths),
-             new HttpServerResponseEncoder());
+                        initialBufferSize, allowDuplicateContentLengths),
+                new HttpServerResponseEncoder());
     }
 
     /**
@@ -91,8 +94,8 @@ public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequ
     public HttpServerCodec(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize, boolean validateHeaders,
                            int initialBufferSize, boolean allowDuplicateContentLengths, boolean allowPartialChunks) {
         init(new HttpServerRequestDecoder(maxInitialLineLength, maxHeaderSize, maxChunkSize, validateHeaders,
-                                          initialBufferSize, allowDuplicateContentLengths, allowPartialChunks),
-             new HttpServerResponseEncoder());
+                        initialBufferSize, allowDuplicateContentLengths, allowPartialChunks),
+                new HttpServerResponseEncoder());
     }
 
     /**
@@ -111,27 +114,27 @@ public final class HttpServerCodec extends CombinedChannelDuplexHandler<HttpRequ
         }
 
         HttpServerRequestDecoder(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize,
-                                        boolean validateHeaders) {
+                                 boolean validateHeaders) {
             super(maxInitialLineLength, maxHeaderSize, maxChunkSize, validateHeaders);
         }
 
         HttpServerRequestDecoder(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize,
 
-                                        boolean validateHeaders, int initialBufferSize) {
+                                 boolean validateHeaders, int initialBufferSize) {
             super(maxInitialLineLength, maxHeaderSize, maxChunkSize, validateHeaders, initialBufferSize);
         }
 
         HttpServerRequestDecoder(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize,
                                  boolean validateHeaders, int initialBufferSize, boolean allowDuplicateContentLengths) {
             super(maxInitialLineLength, maxHeaderSize, maxChunkSize, validateHeaders, initialBufferSize,
-                  allowDuplicateContentLengths);
+                    allowDuplicateContentLengths);
         }
 
         HttpServerRequestDecoder(int maxInitialLineLength, int maxHeaderSize, int maxChunkSize,
                                  boolean validateHeaders, int initialBufferSize, boolean allowDuplicateContentLengths,
                                  boolean allowPartialChunks) {
             super(maxInitialLineLength, maxHeaderSize, maxChunkSize, validateHeaders, initialBufferSize,
-                  allowDuplicateContentLengths, allowPartialChunks);
+                    allowDuplicateContentLengths, allowPartialChunks);
         }
 
         @Override

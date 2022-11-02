@@ -16,12 +16,14 @@
 package io.netty.channel;
 
 /**
+ * 在做 select 操作和执行任务过程中的策略选择问题
  * Factory which uses the default select strategy.
  */
 public final class DefaultSelectStrategyFactory implements SelectStrategyFactory {
     public static final SelectStrategyFactory INSTANCE = new DefaultSelectStrategyFactory();
 
-    private DefaultSelectStrategyFactory() { }
+    private DefaultSelectStrategyFactory() {
+    }
 
     @Override
     public SelectStrategy newSelectStrategy() {
