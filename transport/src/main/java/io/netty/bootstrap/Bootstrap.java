@@ -37,7 +37,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 
 /**
- * 客户端程序的启动引导类
+ * 客户端程序的启动引导类，用于创建客户端实例
  * A {@link Bootstrap} that makes it easy to bootstrap a {@link Channel} to use
  * for clients.
  *

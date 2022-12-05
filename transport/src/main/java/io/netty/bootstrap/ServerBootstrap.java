@@ -39,7 +39,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 服务端启动引导类
+ * 服务端启动引导类，用于创建服务端实例
  * {@link Bootstrap} sub-class which allows easy bootstrap of {@link ServerChannel}
  */
 public class ServerBootstrap extends AbstractBootstrap<ServerBootstrap, ServerChannel> {
