@@ -19,6 +19,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelPipeline;
 
 /**
+ * http请求解码器
  * Decodes {@link ByteBuf}s into {@link HttpRequest}s and {@link HttpContent}s.
  *
  * <h3>Parameters that prevents excessive memory consumption</h3>
@@ -101,21 +102,21 @@ public class HttpRequestDecoder extends HttpObjectDecoder {
             int maxInitialLineLength, int maxHeaderSize, int maxChunkSize, boolean validateHeaders,
             int initialBufferSize) {
         super(maxInitialLineLength, maxHeaderSize, maxChunkSize, DEFAULT_CHUNKED_SUPPORTED, validateHeaders,
-              initialBufferSize);
+                initialBufferSize);
     }
 
     public HttpRequestDecoder(
             int maxInitialLineLength, int maxHeaderSize, int maxChunkSize, boolean validateHeaders,
             int initialBufferSize, boolean allowDuplicateContentLengths) {
         super(maxInitialLineLength, maxHeaderSize, maxChunkSize, DEFAULT_CHUNKED_SUPPORTED, validateHeaders,
-              initialBufferSize, allowDuplicateContentLengths);
+                initialBufferSize, allowDuplicateContentLengths);
     }
 
     public HttpRequestDecoder(
             int maxInitialLineLength, int maxHeaderSize, int maxChunkSize, boolean validateHeaders,
             int initialBufferSize, boolean allowDuplicateContentLengths, boolean allowPartialChunks) {
         super(maxInitialLineLength, maxHeaderSize, maxChunkSize, DEFAULT_CHUNKED_SUPPORTED, validateHeaders,
-              initialBufferSize, allowDuplicateContentLengths, allowPartialChunks);
+                initialBufferSize, allowDuplicateContentLengths, allowPartialChunks);
     }
 
     @Override

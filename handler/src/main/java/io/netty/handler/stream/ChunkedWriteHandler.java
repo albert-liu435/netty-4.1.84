@@ -37,6 +37,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
+ * 支持异步大文件传输
  * A {@link ChannelHandler} that adds support for writing a large data stream
  * asynchronously neither spending a lot of memory nor getting
  * {@link OutOfMemoryError}.  Large data streaming such as file
@@ -60,7 +61,7 @@ import java.util.Queue;
  * </pre>
  *
  * <h3>Sending a stream which generates a chunk intermittently</h3>
- *
+ * <p>
  * Some {@link ChunkedInput} generates a chunk on a certain event or timing.
  * Such {@link ChunkedInput} implementation often returns {@code null} on
  * {@link ChunkedInput#readChunk(ChannelHandlerContext)}, resulting in the indefinitely suspended
@@ -70,7 +71,7 @@ import java.util.Queue;
 public class ChunkedWriteHandler extends ChannelDuplexHandler {
 
     private static final InternalLogger logger =
-        InternalLoggerFactory.getInstance(ChunkedWriteHandler.class);
+            InternalLoggerFactory.getInstance(ChunkedWriteHandler.class);
 
     private final Queue<PendingWrite> queue = new ArrayDeque<PendingWrite>();
     private volatile ChannelHandlerContext ctx;
@@ -147,7 +148,7 @@ public class ChunkedWriteHandler extends ChannelDuplexHandler {
     }
 
     private void discard(Throwable cause) {
-        for (;;) {
+        for (; ; ) {
             PendingWrite currentWrite = queue.poll();
 
             if (currentWrite == null) {

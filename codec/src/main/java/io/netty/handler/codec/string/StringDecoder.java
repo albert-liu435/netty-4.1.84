@@ -29,6 +29,7 @@ import java.nio.charset.Charset;
 import java.util.List;
 
 /**
+ * 将接收到的对象转换为字符串
  * Decodes a received {@link ByteBuf} into a {@link String}.  Please
  * note that this decoder must be used with a proper {@link ByteToMessageDecoder}
  * such as {@link DelimiterBasedFrameDecoder} or {@link LineBasedFrameDecoder}

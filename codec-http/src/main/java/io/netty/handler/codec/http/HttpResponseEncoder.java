@@ -21,6 +21,7 @@ import io.netty.buffer.ByteBufUtil;
 import static io.netty.handler.codec.http.HttpConstants.*;
 
 /**
+ * http响应编码器
  * Encodes an {@link HttpResponse} or an {@link HttpContent} into
  * a {@link ByteBuf}.
  */
