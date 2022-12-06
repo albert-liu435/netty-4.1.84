@@ -57,6 +57,9 @@ public final class DefaultEventExecutorChooserFactory implements EventExecutorCh
         return (val & -val) == val;
     }
 
+    /**
+     * 2的指数的时候走下面的逻辑
+     */
     private static final class PowerOfTwoEventExecutorChooser implements EventExecutorChooser {
         private final AtomicInteger idx = new AtomicInteger();
         private final EventExecutor[] executors;
@@ -71,6 +74,9 @@ public final class DefaultEventExecutorChooserFactory implements EventExecutorCh
         }
     }
 
+    /**
+     * 不是2的指数走这个逻辑
+     */
     private static final class GenericEventExecutorChooser implements EventExecutorChooser {
         // Use a 'long' counter to avoid non-round-robin behaviour at the 32-bit overflow boundary.
         // The 64-bit long solves this by placing the overflow so far into the future, that no system

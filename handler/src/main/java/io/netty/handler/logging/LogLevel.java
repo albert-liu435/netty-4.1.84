@@ -18,6 +18,7 @@ package io.netty.handler.logging;
 import io.netty.util.internal.logging.InternalLogLevel;
 
 /**
+ * 日志等级枚举类
  * Maps the regular {@link LogLevel}s with the {@link InternalLogLevel} ones.
  */
 public enum LogLevel {
@@ -35,7 +36,7 @@ public enum LogLevel {
 
     /**
      * For internal use only.
-     *
+     * <p>
      * <p/>Converts the specified {@link LogLevel} to its {@link InternalLogLevel} variant.
      *
      * @return the converted level.

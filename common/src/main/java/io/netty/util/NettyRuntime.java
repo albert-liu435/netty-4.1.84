@@ -22,11 +22,13 @@ import io.netty.util.internal.SystemPropertyUtil;
 import java.util.Locale;
 
 /**
+ * 运行时工具类
  * A utility class for wrapping calls to {@link Runtime}.
  */
 public final class NettyRuntime {
 
     /**
+     * 持有可用的处理器的类
      * Holder class for available processors to enable testing.
      */
     static class AvailableProcessorsHolder {
@@ -34,6 +36,7 @@ public final class NettyRuntime {
         private int availableProcessors;
 
         /**
+         * 设置可用的处理器数量
          * Set the number of available processors.
          *
          * @param availableProcessors the number of available processors
@@ -54,6 +57,7 @@ public final class NettyRuntime {
         }
 
         /**
+         * 线程安全的，可以通过io.netty.availableProcessors参数进行覆盖
          * Get the configured number of available processors. The default is {@link Runtime#availableProcessors()}.
          * This can be overridden by setting the system property "io.netty.availableProcessors" or by invoking
          * {@link #setAvailableProcessors(int)} before any calls to this method.
@@ -73,6 +77,7 @@ public final class NettyRuntime {
         }
     }
 
+    //单例模式
     private static final AvailableProcessorsHolder holder = new AvailableProcessorsHolder();
 
     /**

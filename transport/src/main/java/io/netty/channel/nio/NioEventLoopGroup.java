@@ -179,6 +179,7 @@ public class NioEventLoopGroup extends MultithreadEventLoopGroup {
         //在windows下默认为WindowsSelectorProvider
         SelectorProvider selectorProvider = (SelectorProvider) args[0];
         SelectStrategyFactory selectStrategyFactory = (SelectStrategyFactory) args[1];
+        //拒绝策略
         RejectedExecutionHandler rejectedExecutionHandler = (RejectedExecutionHandler) args[2];
         EventLoopTaskQueueFactory taskQueueFactory = null;
         EventLoopTaskQueueFactory tailTaskQueueFactory = null;

@@ -16,6 +16,7 @@
 package io.netty.util.concurrent;
 
 /**
+ * 调度异步操作的结果接口
  * The result of a scheduled asynchronous operation.
  */
 @SuppressWarnings("ClassNameSameAsAncestorName")

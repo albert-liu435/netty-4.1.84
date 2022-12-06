@@ -86,6 +86,7 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
         for (int i = 0; i < nThreads; i++) {
             boolean success = false;
             try {
+                //创建new NioEventLoop
                 children[i] = newChild(executor, args);
                 success = true;
             } catch (Exception e) {
@@ -130,6 +131,7 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
 
         // 添加线程终止的监听器
         for (EventExecutor e : children) {
+            //为每一个单例线程添加一个关闭监听器
             e.terminationFuture().addListener(terminationListener);
         }
         // 用于迭代器的集合，只可读，不可用进行修改
@@ -139,6 +141,11 @@ public abstract class MultithreadEventExecutorGroup extends AbstractEventExecuto
         readonlyChildren = Collections.unmodifiableSet(childrenSet);
     }
 
+    /**
+     * 默认的线程池工厂类
+     *
+     * @return
+     */
     protected ThreadFactory newDefaultThreadFactory() {
         return new DefaultThreadFactory(getClass());
     }

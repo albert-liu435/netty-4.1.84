@@ -18,12 +18,14 @@ package io.netty.util.internal.logging;
 import org.slf4j.Logger;
 
 /**
+ * Slf4j log
  * <a href="https://www.slf4j.org/">SLF4J</a> logger.
  */
 final class Slf4JLogger extends AbstractInternalLogger {
 
     private static final long serialVersionUID = 108038972685130825L;
 
+    //让某些被transient关键字修饰的成员属性变量不被序列化
     private final transient Logger logger;
 
     Slf4JLogger(Logger logger) {
