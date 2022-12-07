@@ -18,6 +18,8 @@ package io.netty.bootstrap;
 import io.netty.channel.Channel;
 
 /**
+ * channel工厂类
+ *
  * @deprecated Use {@link io.netty.channel.ChannelFactory} instead.
  */
 @Deprecated

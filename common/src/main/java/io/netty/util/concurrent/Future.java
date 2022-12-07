@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 
 /**
+ * 异步操作执行的结果
  * The result of an asynchronous operation.
  */
 @SuppressWarnings("ClassNameSameAsAncestorName")

@@ -25,6 +25,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
+ * 常量池
  * A pool of {@link Constant}s.
  *
  * @param <T> the type of the constant
@@ -41,8 +42,8 @@ public abstract class ConstantPool<T extends Constant<T>> {
     public T valueOf(Class<?> firstNameComponent, String secondNameComponent) {
         return valueOf(
                 checkNotNull(firstNameComponent, "firstNameComponent").getName() +
-                '#' +
-                checkNotNull(secondNameComponent, "secondNameComponent"));
+                        '#' +
+                        checkNotNull(secondNameComponent, "secondNameComponent"));
     }
 
     /**
