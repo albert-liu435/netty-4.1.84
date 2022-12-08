@@ -37,7 +37,7 @@ import java.util.ArrayDeque;
 import java.util.Queue;
 
 /**
- * 支持异步大文件传输
+ * 支持异步大文件传输，以数据块的方式进行传输
  * A {@link ChannelHandler} that adds support for writing a large data stream
  * asynchronously neither spending a lot of memory nor getting
  * {@link OutOfMemoryError}.  Large data streaming such as file

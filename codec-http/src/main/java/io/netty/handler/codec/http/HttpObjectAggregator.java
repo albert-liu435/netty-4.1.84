@@ -33,7 +33,7 @@ import static io.netty.handler.codec.http.HttpHeaderNames.EXPECT;
 import static io.netty.handler.codec.http.HttpUtil.getContentLength;
 
 /**
- * 将多个消息转换为单一的request或者response对象
+ * http数据在传输过程中是分段, HttpObjectAggregator ，就是可以将多个段聚合 即将多个消息转换为单一的request或者response对象
  * A {@link ChannelHandler} that aggregates an {@link HttpMessage}
  * and its following {@link HttpContent}s into a single {@link FullHttpRequest}
  * or {@link FullHttpResponse} (depending on if it used to handle requests or responses)
