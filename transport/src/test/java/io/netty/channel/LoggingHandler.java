@@ -19,11 +19,16 @@ import java.net.SocketAddress;
 import java.util.Collections;
 import java.util.EnumSet;
 
+/**
+ * 码流日志打印Handler
+ */
 final class LoggingHandler implements ChannelInboundHandler, ChannelOutboundHandler {
 
-    enum Event { WRITE, FLUSH, BIND, CONNECT, DISCONNECT, CLOSE, DEREGISTER, READ, WRITABILITY,
+    enum Event {
+        WRITE, FLUSH, BIND, CONNECT, DISCONNECT, CLOSE, DEREGISTER, READ, WRITABILITY,
         HANDLER_ADDED, HANDLER_REMOVED, EXCEPTION, READ_COMPLETE, REGISTERED, UNREGISTERED, ACTIVE, INACTIVE,
-        USER }
+        USER
+    }
 
     private StringBuilder log = new StringBuilder();
 
@@ -50,7 +55,7 @@ final class LoggingHandler implements ChannelInboundHandler, ChannelOutboundHand
 
     @Override
     public void connect(ChannelHandlerContext ctx, SocketAddress remoteAddress, SocketAddress localAddress,
-            ChannelPromise promise) throws Exception {
+                        ChannelPromise promise) throws Exception {
         log(Event.CONNECT, "remoteAddress=" + remoteAddress + " localAddress=" + localAddress);
         ctx.connect(remoteAddress, localAddress, promise);
     }

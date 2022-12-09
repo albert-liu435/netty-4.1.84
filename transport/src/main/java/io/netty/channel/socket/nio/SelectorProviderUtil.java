@@ -44,9 +44,19 @@ final class SelectorProviderUtil {
         return null;
     }
 
+    /**
+     * 反射方法
+     *
+     * @param method
+     * @param provider
+     * @param family
+     * @param <C>
+     * @return
+     * @throws IOException
+     */
     @SuppressJava6Requirement(reason = "Usage guarded by java version check")
     static <C extends Channel> C newChannel(Method method, SelectorProvider provider,
-                                                    InternetProtocolFamily family) throws IOException {
+                                            InternetProtocolFamily family) throws IOException {
         /**
          *  Use the {@link SelectorProvider} to open {@link SocketChannel} and so remove condition in
          *  {@link SelectorProvider#provider()} which is called by each SocketChannel.open() otherwise.
@@ -68,5 +78,6 @@ final class SelectorProviderUtil {
         return null;
     }
 
-    private SelectorProviderUtil() { }
+    private SelectorProviderUtil() {
+    }
 }

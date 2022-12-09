@@ -22,6 +22,7 @@ import java.net.Inet6Address;
 import java.net.InetAddress;
 
 /**
+ * 内部IP协议家族
  * Internet Protocol (IP) families used byte the {@link DatagramChannel}
  */
 public enum InternetProtocolFamily {

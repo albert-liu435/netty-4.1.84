@@ -19,8 +19,8 @@ import io.netty.util.internal.ObjectUtil;
 import io.netty.util.internal.StringUtil;
 
 /**
+ * 接受或者发送的数据包默认实现类
  * Default implementation of a {@link ByteBufHolder} that holds it's data in a {@link ByteBuf}.
- *
  */
 public class DefaultByteBufHolder implements ByteBufHolder {
 
@@ -136,9 +136,9 @@ public class DefaultByteBufHolder implements ByteBufHolder {
      * override {@code equals} method with an additional comparison logic and we
      * need the symmetric property of the {@code equals} operation to be preserved.
      *
-     * @param   o   the reference object with which to compare.
-     * @return  {@code true} if this object is the same as the obj
-     *          argument; {@code false} otherwise.
+     * @param o the reference object with which to compare.
+     * @return {@code true} if this object is the same as the obj
+     * argument; {@code false} otherwise.
      */
     @Override
     public boolean equals(Object o) {

@@ -20,6 +20,7 @@ import io.netty.buffer.DefaultByteBufHolder;
 import io.netty.util.internal.StringUtil;
 
 /**
+ * web套接字框架的基类。
  * Base class for web socket frames.
  */
 public abstract class WebSocketFrame extends DefaultByteBufHolder {

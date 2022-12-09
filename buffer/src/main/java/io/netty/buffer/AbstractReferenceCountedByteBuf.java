@@ -21,6 +21,7 @@ import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import io.netty.util.internal.ReferenceCountUpdater;
 
 /**
+ * 类似于JVM内存回收的对象引用计数器，用于跟踪对象分配和销毁，做自动内存回收
  * Abstract base class for {@link ByteBuf} implementations that count references.
  */
 public abstract class AbstractReferenceCountedByteBuf extends AbstractByteBuf {
@@ -31,15 +32,16 @@ public abstract class AbstractReferenceCountedByteBuf extends AbstractByteBuf {
 
     private static final ReferenceCountUpdater<AbstractReferenceCountedByteBuf> updater =
             new ReferenceCountUpdater<AbstractReferenceCountedByteBuf>() {
-        @Override
-        protected AtomicIntegerFieldUpdater<AbstractReferenceCountedByteBuf> updater() {
-            return AIF_UPDATER;
-        }
-        @Override
-        protected long unsafeOffset() {
-            return REFCNT_FIELD_OFFSET;
-        }
-    };
+                @Override
+                protected AtomicIntegerFieldUpdater<AbstractReferenceCountedByteBuf> updater() {
+                    return AIF_UPDATER;
+                }
+
+                @Override
+                protected long unsafeOffset() {
+                    return REFCNT_FIELD_OFFSET;
+                }
+            };
 
     // Value might not equal "real" reference count, all access should be via the updater
     @SuppressWarnings({"unused", "FieldMayBeFinal"})

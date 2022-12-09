@@ -24,6 +24,7 @@ import io.netty.channel.ChannelInitializer;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 当一段时间没有数据可读时抛出异常
  * Raises a {@link ReadTimeoutException} when no data was read within a certain
  * period of time.
  *
@@ -56,6 +57,7 @@ import java.util.concurrent.TimeUnit;
  * bootstrap.childHandler(new MyChannelInitializer());
  * ...
  * </pre>
+ *
  * @see WriteTimeoutHandler
  * @see IdleStateHandler
  */
@@ -65,8 +67,7 @@ public class ReadTimeoutHandler extends IdleStateHandler {
     /**
      * Creates a new instance.
      *
-     * @param timeoutSeconds
-     *        read timeout in seconds
+     * @param timeoutSeconds read timeout in seconds
      */
     public ReadTimeoutHandler(int timeoutSeconds) {
         this(timeoutSeconds, TimeUnit.SECONDS);
@@ -75,10 +76,8 @@ public class ReadTimeoutHandler extends IdleStateHandler {
     /**
      * Creates a new instance.
      *
-     * @param timeout
-     *        read timeout
-     * @param unit
-     *        the {@link TimeUnit} of {@code timeout}
+     * @param timeout read timeout
+     * @param unit    the {@link TimeUnit} of {@code timeout}
      */
     public ReadTimeoutHandler(long timeout, TimeUnit unit) {
         super(timeout, 0, 0, unit);

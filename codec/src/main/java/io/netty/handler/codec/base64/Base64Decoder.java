@@ -28,6 +28,7 @@ import io.netty.util.internal.ObjectUtil;
 import java.util.List;
 
 /**
+ * Base64解码器
  * Decodes a Base64-encoded {@link ByteBuf} or US-ASCII {@link String}
  * into a {@link ByteBuf}.  Please note that this decoder must be used
  * with a proper {@link ByteToMessageDecoder} such as {@link DelimiterBasedFrameDecoder}
