@@ -387,6 +387,12 @@ public class DefaultChannelPipeline implements ChannelPipeline {
         return this;
     }
 
+    /**
+     * 生成handlername
+     *
+     * @param handler
+     * @return
+     */
     private String generateName(ChannelHandler handler) {
         Map<Class<?>, String> cache = nameCaches.get();
         Class<?> handlerType = handler.getClass();
@@ -1244,6 +1250,9 @@ public class DefaultChannelPipeline implements ChannelPipeline {
         }
     }
 
+    /**
+     * 尾结点
+     */
     // A special catch-all handler that handles both bytes and messages.
     final class TailContext extends AbstractChannelHandlerContext implements ChannelInboundHandler {
 
@@ -1309,6 +1318,9 @@ public class DefaultChannelPipeline implements ChannelPipeline {
         }
     }
 
+    /**
+     * 双向链表结构节点
+     */
     final class HeadContext extends AbstractChannelHandlerContext
             implements ChannelOutboundHandler, ChannelInboundHandler {
 

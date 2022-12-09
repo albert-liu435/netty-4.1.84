@@ -65,6 +65,7 @@ public abstract class AbstractNioMessageChannel extends AbstractNioChannel {
 
         @Override
         public void read() {
+            //值为true从该出开始执行，否则在该语句处停止
             assert eventLoop().inEventLoop();
             final ChannelConfig config = config();
             final ChannelPipeline pipeline = pipeline();
