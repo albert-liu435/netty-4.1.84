@@ -16,11 +16,13 @@
 package io.netty.util.concurrent;
 
 /**
+ * 拒绝策略
  * Similar to {@link java.util.concurrent.RejectedExecutionHandler} but specific to {@link SingleThreadEventExecutor}.
  */
 public interface RejectedExecutionHandler {
 
     /**
+     * 当添加任务的失败的时候调用该方法
      * Called when someone tried to add a task to {@link SingleThreadEventExecutor} but this failed due capacity
      * restrictions.
      */

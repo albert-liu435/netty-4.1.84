@@ -63,6 +63,9 @@ public abstract class AbstractNioMessageChannel extends AbstractNioChannel {
 
         private final List<Object> readBuf = new ArrayList<Object>();
 
+        /**
+         * 从channel中读取数据
+         */
         @Override
         public void read() {
             //值为true从该出开始执行，否则在该语句处停止
@@ -93,7 +96,7 @@ public abstract class AbstractNioMessageChannel extends AbstractNioChannel {
                 }
 
                 int size = readBuf.size();
-                for (int i = 0; i < size; i ++) {
+                for (int i = 0; i < size; i++) {
                     readPending = false;
                     pipeline.fireChannelRead(readBuf.get(i));
                 }
