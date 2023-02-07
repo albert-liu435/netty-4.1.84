@@ -28,7 +28,7 @@ import java.net.SocketAddress;
 
 
 /**
- * 1、etty网络通信的组件，能够用于执行网络I/O操作。
+ * 1、netty网络通信的组件，能够用于执行网络I/O操作。
  * 2、通过Channel可以获得网络通道的状态，网络连接的配置参数(如：接收缓冲区大小)
  * 3、
  * A nexus to a network socket or a component which is capable of I/O
